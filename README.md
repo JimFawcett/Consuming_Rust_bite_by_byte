@@ -1,22 +1,21 @@
 <html>
 <head>
 <style>
+  body { margin: 1em; }
   .indent { margin-left:2em; }
   .undefined { opacity: 0.5; }
 </style>
 </head>
 <body>
-# Consuming_Rust_bite_by_byte
+# Consuming_Rust_bite_by_byte<br />
 https://JimFawcett.github.io/RustBiteByByte
-
-A sequence of short stories about Rust
 
     <h3>Contents:</h3>
     <div class="indent">
       A sequence of short stories (Bites) about Rust, the programming language:
       <div class="indent">
         <ol class="tight">
-          <li>data bite</li>
+          <li><a href="#data">data bite</a></li>
           <li class="undefined">undefined behavior</li>
           <li class="undefined">ownership</li>
           <li class="undefined">functions</li>
@@ -37,5 +36,7 @@ A sequence of short stories about Rust
         </ol>
       </div>
     </div>
+    <a id="data">
+    <h3>Data Bite</h3>
 </body>
 </html>
