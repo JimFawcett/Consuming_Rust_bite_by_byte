@@ -7,7 +7,7 @@
 
     A sequence of short stories (Bites) about Rust, the programming language:
   
-      1. [data](##Bite-1.-Data)
+      1. (#bite-1.-data)
       2. undefined behavior
       3. ownership
       4. functions
@@ -26,4 +26,4 @@
       17. thread-safe sharing
       18. macros
 
-    ##Bite 1. Data
+    #bite 1. data
