@@ -4,10 +4,12 @@
   https://JimFawcett.github.io/RustBiteByByte
 
   ##Contents:
+
     A sequence of short stories (Bites) about Rust, the programming language:
+  
       1. <a href="#data">data bite</a>
-      2. undefined behavior
-      3. ownership
+      1. undefined behavior
+      1. ownership
       4. functions
       5. error handling
       6. structs
