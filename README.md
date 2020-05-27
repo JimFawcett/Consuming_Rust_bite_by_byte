@@ -1,11 +1,14 @@
-# Consuming_Rust_bite_by_byte
-https://JimFawcett.github.io/RustBiteByByte
+<html>
 <head>
 <style>
   .indent { margin-left:2em; }
   .undefined { opacity: 0.5; }
 </style>
 </head>
+<body>
+# Consuming_Rust_bite_by_byte
+https://JimFawcett.github.io/RustBiteByByte
+
 A sequence of short stories about Rust
 
     <h3>Contents:</h3>
@@ -34,3 +37,5 @@ A sequence of short stories about Rust
         </ol>
       </div>
     </div>
+</body>
+</html>
