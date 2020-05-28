@@ -25,7 +25,7 @@ https://JimFawcett.github.io/RustBiteByByte.html
 
 3. **ownership**
 
-    Explains mutability, single ownership, borrows, and the reader-write lock behavior of Rust ownership
+    Explains mutability, single ownership, borrows, and Rust ownership reader-write lock behavior
 
 4. functions
 5. error handling
