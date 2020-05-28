@@ -7,11 +7,8 @@
 
     A test of detail dropdown
 
-    <detail>
-      <summary>This is some detail</summary>
-      yada yada yada
-    </detail>
-
+    [data] [#data]
+    
     A sequence of short stories (Bites) about Rust, the programming language:
   
       1. [create an anchor](#bite-1.-data)
@@ -33,4 +30,4 @@
       17. thread-safe sharing
       18. macros
 
-    bite 1. data
+    [data]:bite 1. data
