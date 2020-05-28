@@ -13,7 +13,7 @@
 
  A sequence of short stories (Bites) about Rust, the programming language:
   
-      1. * [data](#data-1)
+      1. [data](#data-1)
       2. undefined behavior
       3. ownership
       4. functions
