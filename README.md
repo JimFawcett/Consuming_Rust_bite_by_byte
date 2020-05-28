@@ -5,6 +5,8 @@ https://JimFawcett.github.io/RustBiteByByte
 
 ## Contents:
 
+    Work just beginning on this repository - please stop by later.
+
 [here](#place2)
 
 [data](#data-1)
@@ -35,7 +37,7 @@ https://JimFawcett.github.io/RustBiteByByte
 18. macros
 
 
-### data <a id="data-1"></a>
+### Data <a id="data-1"></a>
 
 
 
