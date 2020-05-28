@@ -13,9 +13,9 @@
 
  A sequence of short stories (Bites) about Rust, the programming language:
   
-      1. [data](#data-1)
-      2. undefined behavior
-      3. ownership
+1. [data](#data-1)
+2. undefined behavior
+3. ownership
       4. functions
       5. error handling
       6. structs
