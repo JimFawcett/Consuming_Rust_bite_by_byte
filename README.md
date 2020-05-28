@@ -3,9 +3,7 @@
 
 https://JimFawcett.github.io/RustBiteByByte
 
-##Contents:
-
-TOC
+## Contents:
 
 [here](#place2)
 
