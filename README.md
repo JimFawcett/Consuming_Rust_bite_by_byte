@@ -7,8 +7,8 @@
 
     TOC
 
-    [Place 2](#place-2)
-    
+    [here](#place-2)
+
     [data](#data-1)
 
     A sequence of short stories (Bites) about Rust, the programming language:
@@ -36,7 +36,7 @@
 
 ## data <a id="data-1"></a>
 
-## Place 2
+### Place 2
 
 
 
