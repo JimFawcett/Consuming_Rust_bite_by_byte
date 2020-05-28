@@ -13,10 +13,6 @@ https://JimFawcett.github.io/RustBiteByByte.html
     The intent is that each bite will contain a small number of pages in some tightly focused area, and may, eventually
     be accompanied by a 10 to 15 minute video.
 
-[//]: # "comment" [here](#place2)
-
-[//]: # "comment" [data](#data-1)
-
  A sequence of short stories (Bites) about Rust, the programming language:
   
 1. [data](#data-1)
@@ -59,3 +55,7 @@ https://JimFawcett.github.io/RustBiteByByte.html
 
 
 ### create an anchor <a id=bite-1.-data></a>
+[//]: # "comment" [here](#place2)
+
+[//]: # "comment" [data](#data-1)
+
