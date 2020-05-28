@@ -8,11 +8,8 @@
     A test of detail dropdown
 
     <detail>
-
       <summary>This is some detail</summary>
-      
       yada yada yada
-
     </detail>
 
     A sequence of short stories (Bites) about Rust, the programming language:
