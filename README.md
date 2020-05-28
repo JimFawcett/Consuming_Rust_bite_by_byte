@@ -1,11 +1,11 @@
 
-  # Consuming_Rust_bite_by_byte<br />
+# Consuming_Rust_bite_by_byte<br />
 
-  https://JimFawcett.github.io/RustBiteByByte
+https://JimFawcett.github.io/RustBiteByByte
 
-  ##Contents:
+##Contents:
 
- TOC
+TOC
 
 [here](#place2)
 
@@ -15,7 +15,8 @@
   
 1. [data](#data-1)
 
-        some description here
+    some description here, yada yada yada
+    yada yada
 
 2. undefined behavior
 3. ownership
