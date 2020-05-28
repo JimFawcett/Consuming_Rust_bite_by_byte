@@ -1,25 +1,36 @@
 
 # Consuming_Rust_bite_by_byte<br />
 
-https://JimFawcett.github.io/RustBiteByByte
+https://JimFawcett.github.io/RustBiteByByte.html
 
 ## Contents:
 
     Work just beginning on this repository - please stop by later.
 
-[here](#place2)
+    This repository will contain brief bites of "getting started" definitions, examples, and exercises for those
+    beginning the Rust journey.
 
-[data](#data-1)
+    The intent is that each bite will contain a small number of pages in some tightly focused area, and may, eventually
+    be accompanied by a 10 to 15 minute video.
+
+[//]: # "comment" [here](#place2)
+
+[//]: # "comment" [data](#data-1)
 
  A sequence of short stories (Bites) about Rust, the programming language:
   
 1. [data](#data-1)
 
-    some description here, yada yada yada
-    yada yada
+    Data explains binding, copy, move, and clone.
 
 2. undefined behavior
+
+    Undefined behavior gives an example of UDB in non-idiomatic C++ and shows that can't happen in Rust
+
 3. ownership
+
+    Explains mutability, and the reader-write lock behavior of Rust ownership
+
 4. functions
 5. error handling
 6. structs
