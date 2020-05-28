@@ -5,13 +5,13 @@
 
   ##Contents:
 
-    TOC
+ TOC
 
-    [here](#place2)
+[here](#place2)
 
-    [data](#data-1)
+[data](#data-1)
 
-    A sequence of short stories (Bites) about Rust, the programming language:
+ A sequence of short stories (Bites) about Rust, the programming language:
   
       1. * [create an anchor](#bite-1.-data)
       2. undefined behavior
