@@ -17,11 +17,11 @@ https://JimFawcett.github.io/RustBiteByByte.html
   
 1. [**data**](#data-1)
 
-    Data explains binding, copy, move, and clone.
+    Explains binding, copy, move, and clone.
 
 2. **undefined behavior**
 
-    Undefined behavior gives an example of UDB in non-idiomatic C++ and shows that can't happen in Rust
+    Gives an example of UDB in non-idiomatic C++ and shows that can't happen in Rust
 
 3. **ownership**
 
