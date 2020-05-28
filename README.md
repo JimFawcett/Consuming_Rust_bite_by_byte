@@ -9,13 +9,11 @@
 
 [here](#place2)
 
-(#data-1)
-
-(#data-1)[data]
+[data](#data-1)
 
  A sequence of short stories (Bites) about Rust, the programming language:
   
-      1. * [create an anchor](#bite-1.-data)
+      1. * [data](#data-1)
       2. undefined behavior
       3. ownership
       4. functions
@@ -34,11 +32,8 @@
       17. thread-safe sharing
       18. macros
 
-<div id="data-1">
 
-## data <a id="data-1"></a>
-
-### Place2
+### data <a id="data-1"></a>
 
 
 
@@ -47,4 +42,5 @@
 
 
 
-## create an anchor <a id=bite-1.-data></a>
+
+### create an anchor <a id=bite-1.-data></a>
