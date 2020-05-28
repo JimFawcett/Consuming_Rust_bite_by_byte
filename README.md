@@ -7,7 +7,8 @@
 
     TOC
 
-    * [data] (#data)
+
+    [data](#data-1)
 
     A sequence of short stories (Bites) about Rust, the programming language:
   
@@ -30,7 +31,9 @@
       17. thread-safe sharing
       18. macros
 
-    ## data <a id="data"></a>
+<div id="data-1">
+
+## data <a id="data-1"></a>
 
 
 
@@ -41,4 +44,4 @@
 
 
 
-    ## create an anchor <a id=bite-1.-data></a>
+## create an anchor <a id=bite-1.-data></a>
