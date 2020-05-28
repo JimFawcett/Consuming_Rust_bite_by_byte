@@ -9,7 +9,9 @@
 
 [here](#place2)
 
-[data](#data-1)
+(#data-1)
+
+(#data-1)[data]
 
  A sequence of short stories (Bites) about Rust, the programming language:
   
