@@ -7,8 +7,8 @@
 
     A test of detail dropdown
 
-    [data] [#data]
-    
+    [data] <#data>
+
     A sequence of short stories (Bites) about Rust, the programming language:
   
       1. [create an anchor](#bite-1.-data)
