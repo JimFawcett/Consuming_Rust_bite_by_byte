@@ -5,9 +5,9 @@
 
   ##Contents:
 
-    A test of detail dropdown
+    TOC
 
-    [data] <#data>
+    [data] (#data)
 
     A sequence of short stories (Bites) about Rust, the programming language:
   
@@ -30,4 +30,15 @@
       17. thread-safe sharing
       18. macros
 
-    [data]:bite 1. data
+    ## data <a id="data"></a>
+
+
+
+
+
+
+
+
+
+
+    ## create an anchor <a id=bite-1.-data></a>
