@@ -5,15 +5,15 @@ https://JimFawcett.github.io/RustBiteByByte.html
 
 ## Contents:
 
-    Work just beginning on this repository - please stop by later.
+    ###Work just beginning on this repository - please stop by later.
 
-    This repository will contain brief bites of "getting started" definitions, examples, and exercises for those
+    ### This repository will contain brief bites of "getting started" definitions, examples, and exercises for those
     beginning the Rust journey.
 
-    The intent is that each bite will contain a small number of pages in some tightly focused area, and may, eventually
+    ###The intent is that each bite will contain a small number of pages in some tightly focused area, and may, eventually
     be accompanied by a 10 to 15 minute video.
 
- A sequence of short stories (Bites) about Rust, the programming language:
+ ##A sequence of short stories (Bites) about Rust, the programming language:
   
 1. [data](#data-1)
 
@@ -25,7 +25,7 @@ https://JimFawcett.github.io/RustBiteByByte.html
 
 3. ownership
 
-    Explains mutability, and the reader-write lock behavior of Rust ownership
+    Explains mutability, single ownership, borrows, and the reader-write lock behavior of Rust ownership
 
 4. functions
 5. error handling
