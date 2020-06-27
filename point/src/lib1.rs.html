@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////
+<pre>/////////////////////////////////////////////////////////////
 // point::lib.rs - Demo Traits                             //
 //                                                         //
 // Jim Fawcett, https://JimFawcett.github.io, 24 Jun 2020  //
@@ -29,32 +29,32 @@ use chrono::{Datelike, Timelike};
 use std::fmt::*;
 
 /*-----------------------------------------------------------
-  declare SpaceTime<T> trait
+  declare SpaceTime&lt;T&gt; trait
   - note that this trait is generic  
 */
-pub trait SpaceTime<T> {
-    fn get_coordinates(&self) -> [T; 3];
-    fn set_coordinates(&mut self, coor: &[T; 3]);
-    fn set_time(&mut self, st: DateTime<Local>);
-    fn get_time(&self) -> DateTime<Local>;
-    fn get_time_string(&self) -> String;
+pub trait SpaceTime&lt;T&gt; {
+    fn get_coordinates(&amp;self) -&gt; [T; 3];
+    fn set_coordinates(&amp;mut self, coor: &amp;[T; 3]);
+    fn set_time(&amp;mut self, st: DateTime&lt;Local&gt;);
+    fn get_time(&amp;self) -&gt; DateTime&lt;Local&gt;;
+    fn get_time_string(&amp;self) -&gt; String;
 }
-/*-- define Point<T> type --*/
+/*-- define Point&lt;T&gt; type --*/
 #[derive(Debug)]
-pub struct Point<T> 
+pub struct Point&lt;T&gt; 
 where T:Default + Debug {
-    x:T, y:T, z:T, t:DateTime<Local>, n:String,
+    x:T, y:T, z:T, t:DateTime&lt;Local&gt;, n:String,
 }
 /*-- implement Time trait --*/
-impl<T> SpaceTime<T> for Point<T>
+impl&lt;T&gt; SpaceTime&lt;T&gt; for Point&lt;T&gt;
 where T:Default + Debug + Clone {
-    fn set_time(&mut self, st: DateTime<Local>) {
+    fn set_time(&amp;mut self, st: DateTime&lt;Local&gt;) {
         self.t = st;
     }
-    fn get_time(&self) -> DateTime<Local> {
+    fn get_time(&amp;self) -&gt; DateTime&lt;Local&gt; {
         self.t
     }
-    fn get_time_string(&self) -> String {
+    fn get_time_string(&amp;self) -&gt; String {
         let year = self.t.year().to_string();
         let mon = self.t.month().to_string();
         let day = self.t.day().to_string();
@@ -62,37 +62,37 @@ where T:Default + Debug + Clone {
         let min = self.t.minute().to_string();
         let sec = self.t.second().to_string();
         let dt = format!(
-            "{}::{:0>2}::{:0>2} {:0>2}::{:0>2}::{:0>2}", 
+            "{}::{:0&gt;2}::{:0&gt;2} {:0&gt;2}::{:0&gt;2}::{:0&gt;2}", 
             year, mon, day, hour, min, sec
         );
         dt
     }
     /*-- set coordinates from array slice --*/
-    fn set_coordinates(&mut self, coor: &[T; 3]) {
+    fn set_coordinates(&amp;mut self, coor: &amp;[T; 3]) {
         self.x = coor[0].clone();
         self.y = coor[1].clone();
         self.z = coor[2].clone();
     }
     /*-- return array of three spatial coordinates --*/
-    fn get_coordinates(&self) -> [T; 3] {
+    fn get_coordinates(&amp;self) -&gt; [T; 3] {
         [self.x.clone(), self.y.clone(), self.z.clone()]
     }
     /*-- time is returned with Time::get_time() --*/ 
 }
 /*-- implement Display trait --*/
-impl<T> Display for Point<T>
+impl&lt;T&gt; Display for Point&lt;T&gt;
 where T:Default + Debug + Clone {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+    fn fmt(&amp;self, f: &amp;mut std::fmt::Formatter) -&gt; std::fmt::Result {
         write!(
             f, "{{ {:?}, {:?}, {:?}, {}, {:?} }}", 
-            &self.x, &self.y, &self.z, 
-            &self.get_time_string(), &self.n
+            &amp;self.x, &amp;self.y, &amp;self.z, 
+            &amp;self.get_time_string(), &amp;self.n
         )
     }
 }
 /*-- implement Point methods --*/
-impl<T> Point<T> where T:Default + Debug + Clone {
-    pub fn new() -> Point<T> {
+impl&lt;T&gt; Point&lt;T&gt; where T:Default + Debug + Clone {
+    pub fn new() -&gt; Point&lt;T&gt; {
         Point {
             x:std::default::Default::default(), 
             y:std::default::Default::default(), 
@@ -101,14 +101,14 @@ impl<T> Point<T> where T:Default + Debug + Clone {
             n:String::default()
         }
     }
-    pub fn default() -> Point<T> {
+    pub fn default() -&gt; Point&lt;T&gt; {
         Point::new()
     }
-    pub fn set_name(&mut self, name: &str) {
+    pub fn set_name(&amp;mut self, name: &amp;str) {
         self.n = name.to_string();
     }
-    pub fn get_name(&self) -> &str {
-        &self.n
+    pub fn get_name(&amp;self) -&gt; &amp;str {
+        &amp;self.n
     }
 }
 
@@ -117,13 +117,13 @@ mod tests {
     use super::*;
     #[test]
     fn construct () {
-        let pt = Point::<i32>::new();
+        let pt = Point::&lt;i32&gt;::new();
         assert_eq!(pt.get_coordinates(), [0, 0, 0]);
     }
     #[test]
     fn set_coor() {
-        let mut pt = Point::<i32>::new();
-        pt.set_coordinates(&[1, 2, 3]);
+        let mut pt = Point::&lt;i32&gt;::new();
+        pt.set_coordinates(&amp;[1, 2, 3]);
         assert_eq!(pt.get_coordinates(), [1, 2, 3]);
     }
     #[test]
@@ -131,10 +131,11 @@ mod tests {
         use chrono::{Duration};
         let two_sec = Duration::seconds(2);
         let ts_start = Local::now() - two_sec;
-        let pt = Point::<i32>::new();
+        let pt = Point::&lt;i32&gt;::new();
         let ts_now = pt.get_time();
         let ts_stop = Local::now() + two_sec;
-        assert!(ts_start < ts_now);
-        assert!(ts_now < ts_stop);
+        assert!(ts_start &lt; ts_now);
+        assert!(ts_now &lt; ts_stop);
     }
 }
+</pre>
