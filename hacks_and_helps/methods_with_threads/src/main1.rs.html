@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////
+<pre>/////////////////////////////////////////////////////////////
 // methods_with_threads::main.rs - member thread helper    //
 //                                                         //
 // Jim Fawcett, https://JimFawcett.github.io, 23 Jul 2020  //
@@ -17,10 +17,10 @@ use std::thread::{JoinHandle};
 use std::sync::{Arc, Mutex};
 
 struct Test1 {
-    count: Arc<Mutex<i32>>,
+    count: Arc&lt;Mutex&lt;i32&gt;&gt;,
 }
 impl Test1 {
-    fn new() -> Test1 {
+    fn new() -&gt; Test1 {
         Test1 {
             count: Arc::new(Mutex::new(0)),
         }
@@ -31,7 +31,7 @@ impl Test1 {
       reference to count will remain valid.  The thread 
       lifetime could exceed the lifetime of Test1 instance.
     */
-    // fn start2(&mut self) -> JoinHandle<()> {
+    // fn start2(&amp;mut self) -&gt; JoinHandle&lt;()&gt; {
     //     std::thread::spawn(move || {
     //         for i in 0..5 {
     //             let mut data = self.count.lock().unwrap();
@@ -51,7 +51,7 @@ impl Test1 {
       The incorrect code above didn't use a shared pointer,
       it attempted to use the member's inner data directly.
     */
-    fn start(&mut self) -> JoinHandle<()> {
+    fn start(&amp;mut self) -&gt; JoinHandle&lt;()&gt; {
         let local_count = self.count.clone();  // get a shared ptr
         std::thread::spawn(move || {
             for i in 0..5 {
@@ -61,35 +61,35 @@ impl Test1 {
             }
         })
     }
-    fn show_count(&self) {
+    fn show_count(&amp;self) {
         print!("\n\n  t1 result = {:?}",self.count.lock().unwrap());
     }
 }
 
 struct Test2 {
-    count: Arc<Mutex<i32>>,
+    count: Arc&lt;Mutex&lt;i32&gt;&gt;,
 }
 impl Test2 {
-    fn new() -> Test2 {
+    fn new() -&gt; Test2 {
         Test2 {
             count: Arc::new(Mutex::new(0)),
         }
     }
     /*-----------------------------------------------------
-      Instead of using member data in Test2::start we've
+      Instead of using member data in Test1a::start we've
       used a temporary scount, then shared its value with
       self.count at the end.
     */
-    fn get_initial_value(&self) -> i32 {
+    fn get_initial_value(&amp;self) -&gt; i32 {
         *self.count.lock().unwrap()
         /* return unlocks mutex */
     }
-    fn start(&mut self) -> JoinHandle<()> {
+    fn start(&amp;mut self) -&gt; JoinHandle&lt;()&gt; {
         /* scount is pointer to a heap value that can be shared */
         let iv = self.get_initial_value();
         let scount = Arc::new(Mutex::new(iv));  // moved into thread
         /* share refers to the same value as scount */
-        let share = Arc::clone(&scount);
+        let share = Arc::clone(&amp;scount);
         let handle = std::thread::spawn(move || {  /* scount moved */
             for i in 0..5 {
                 let mut data = scount.lock().unwrap();
@@ -107,17 +107,17 @@ impl Test2 {
         self.count = share;
         handle
     }
-    fn show_count(&self) {
+    fn show_count(&amp;self) {
         print!("\n\n  t2 result = {:?}",self.count.lock().unwrap());
     }
 }
 
 struct Test3 {
-    counter: Arc<Mutex<i32>>,
+    counter: Arc&lt;Mutex&lt;i32&gt;&gt;,
 }
 impl Test3 {
     /*-----------------------------------------------------
-      This example uses the same technique as Test2, but
+      This example uses the same technique as Test1a, but
       moves the thread into new(), the Test2 constructor.  
       That would be a good idea for any type whose instances 
       need the running thread to operate as expected. 
@@ -126,9 +126,9 @@ impl Test3 {
       constructed Test2 instance and the thread handle.
       Look at main to see how that is used.
     */
-    fn new() -> (Test3, JoinHandle<()>) {
+    fn new() -&gt; (Test3, JoinHandle&lt;()&gt;) {
         let scount = Arc::new(Mutex::new(0));  // initial value is 0
-        let share = Arc::clone(&scount);
+        let share = Arc::clone(&amp;scount);
         let handle = std::thread::spawn(move || {  // scount moved
             for i in 0..5 {
                 let mut data = scount.lock().unwrap();
@@ -141,7 +141,7 @@ impl Test3 {
             handle
         )
     }
-    fn show_count(&self) {
+    fn show_count(&amp;self) {
         print!("\n\n  t3 result = {:?}",self.counter.lock().unwrap());
     }
 }
@@ -169,3 +169,4 @@ fn main() {
 
     println!("\n\n  That's all Folks!\n\n");
 }
+</pre>
