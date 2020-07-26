@@ -15,6 +15,8 @@
 
 use std::thread::{JoinHandle};
 use std::sync::{Arc, Mutex};
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::time::Duration;
 
 struct Test1 {
     count: Arc<Mutex<i32>>,
@@ -25,32 +27,6 @@ impl Test1 {
             count: Arc::new(Mutex::new(0)),
         }
     }
-    /*-----------------------------------------------------
-      Uncommenting the code, below, causes compile error.
-      The problem is that Rust can't guarantee that the
-      reference to count will remain valid.  The thread 
-      lifetime could exceed the lifetime of Test1 instance.
-    */
-    // fn start2(&mut self) -> JoinHandle<()> {
-    //     std::thread::spawn(move || {
-    //         for i in 0..5 {
-    //             let mut data = self.count.lock().unwrap();
-    //             *data += i;
-    //             print!("\n  {:?}", data);
-    //         }
-    //     })
-    // }
-    /*-----------------------------------------------------
-      The following compiles because local_count uses a
-      shared pointer to the mutex protected value on the
-      heap returned by Arc clone().
-
-      The pointed to value isn't dropped until the last 
-      reference is dropped.
-
-      The incorrect code above didn't use a shared pointer,
-      it attempted to use the member's inner data directly.
-    */
     fn start(&mut self) -> JoinHandle<()> {
         let local_count = self.count.clone();  // get a shared ptr
         std::thread::spawn(move || {
@@ -146,9 +122,49 @@ impl Test3 {
     }
 }
 
+struct Test4 {
+    counter: Arc<Mutex<i32>>,
+    do_run : Arc<AtomicBool>,
+}
+impl Test4 {
+    /*-----------------------------------------------------
+      This example demonstrates graceful thread shutdown
+      using an AtomicBool, set by the user and tested in 
+      the thread loop.
+    */
+    fn new() -> (Test4, JoinHandle<()>) {
+        let scount = Arc::new(Mutex::new(0));
+        let share = Arc::clone(&scount);
+        let run = Arc::new(AtomicBool::new(true));
+        let run_clone = Arc::clone(&run);
+        let handle = std::thread::spawn(move || {  // scount moved
+            for i in 0..5000 {
+                if !run.load(Ordering::Relaxed) {
+                    break;
+                }
+                /* slow down loop for display */
+                std::thread::sleep(Duration::from_micros(200));
+                let mut data = scount.lock().unwrap();
+                *data = i;
+                print!("\n  {:?}", data);
+            }
+        });
+        (
+            Test4 { counter: share, do_run: run_clone },  
+            handle
+        )
+    }
+    fn stop(&self) {
+        self.do_run.store(false, Ordering::Relaxed);
+    } 
+    fn show_count(&self) {
+        print!("\n\n  t4 result = {:?}",self.counter.lock().unwrap());
+    }
+}
+
 fn main() {
 
-    print!("\n  -- demo Test1 --");
+    print!("\n  -- demo Test1 - uses start() method --");
     let mut t1 = Test1::new();
     let handle = t1.start();
     let _ = handle.join();
@@ -162,10 +178,18 @@ fn main() {
     t2.show_count();
     println!();
 
-    print!("\n  -- demo Test3 --");
+    print!("\n  -- demo Test3 - thread started in new() --");
     let (t3, handle) = Test3::new();
     let _ = handle.join();
     t3.show_count();
+    println!();
+
+    print!("\n  -- demo Test4 - graceful stop --");
+    let (t4, handle) = Test4::new();
+    std::thread::sleep(Duration::from_millis(100));
+    t4.stop();
+    let _ = handle.join();
+    t4.show_count();
 
     println!("\n\n  That's all Folks!\n\n");
 }
