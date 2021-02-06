@@ -1,0 +1,37 @@
+<pre>#![allow(unused_variables)]
+
+#[derive(Debug, Clone)]
+enum Event&lt;T&gt; { Normal(T), Warning(T), Critical(T), NoEvent }
+impl&lt;T&gt; Event&lt;T&gt; {
+    fn unwrap(&amp;self) -&gt; &amp;T {
+        if let Event::Normal(ev) = self{ ev } 
+        else if let Event::Warning(ev) = self{ev}
+        else if let Event::Critical(ev) = self{ev}
+        else { panic!() }
+    }
+}
+
+use Event::*;
+
+fn main() {
+    let e1: Event&lt;u8&gt; = Event::&lt;u8&gt;::Normal(1);
+    let e2 = Warning(2);
+    let e3 = Critical(3);
+    let e4: Event&lt;u8&gt; = NoEvent;
+    
+    match e3 {
+        Normal(ev) =&gt; print!("\n  event {} is Normal", ev),
+        Warning(ev) =&gt; print!("\n  event {} is Warning", ev),
+        Critical(ev) =&gt; print!("\n  event {} is Critical!", ev),
+        NoEvent =&gt; print!("\n  no events occurred"),
+    }
+    
+    let e = e2.clone();
+    
+    if let Warning(ev) = e {
+        print!("\n  event {} is Warning", ev);
+    }
+    
+    let v = e3.unwrap();
+    print!("\n  inner value of {:?} is {}", e3, v);
+}</pre>
