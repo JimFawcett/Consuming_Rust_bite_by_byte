@@ -1,0 +1,88 @@
+<pre>/*-------------------------------------
+  Pluggin Architecture using Option&lt;T&gt;
+  - Version 1 
+  - holds Option of reference to T
+  - requires annotating lifetimes
+    so Rust can ensure that Demo
+    doesn't outlive its pluggin
+*/
+use std::fmt::Debug;
+
+/*------------------------------------
+  Trait declared by Demo and 
+  implemented by Pluggin
+*/
+pub trait Plug {
+    fn do_plug_op(&amp;self, msg: &amp;str);
+    fn name(&amp;mut self, n: &amp;str);
+}
+/*-------------------------------------
+  Demo accepts a Pluggin that supplies
+  a service for Demo to use.
+*/
+#[derive(Debug)]
+pub struct Demo&lt;'a, T&gt; where T: Plug + Debug + 'a {
+    pluggin: Option&lt;&amp;'a mut T&gt;,
+}
+impl&lt;'a, T&gt; Demo&lt;'a, T&gt; where T: Plug + Debug + 'a {
+    pub fn new() -&gt; Self {
+        Self {
+            pluggin: None,
+        }
+    }
+    pub fn do_op(&amp;mut self, msg: &amp;str) {
+        print!("\n  {}", msg);
+        /*-- show Demo can change state of pluggin --*/
+        if self.pluggin.is_some() {
+            /*-- get inner &amp;T as mutable --*/
+            let pl = self.pluggin.as_mut().unwrap();
+            pl.name("Joe");
+            pl.do_plug_op("pluggin called from Demo");
+        } 
+    }
+    pub fn accept(&amp;mut self, p: &amp;'a mut T) {
+        self.pluggin = Some(p);
+    }
+}
+/*-----------------------------------
+  Pluggin is a service provider that
+  implements Plug trait so Demo
+  knows how to call it.
+*/
+#[derive(Debug)]
+pub struct Pluggin {
+    name: String
+}
+impl Plug for Pluggin {
+    fn do_plug_op(&amp;self, msg: &amp;str) {
+        print!("\n  {}: {}", &amp;self.name, msg);
+    }
+    fn name(&amp;mut self, n: &amp;str) {
+        self.name = n.to_string();
+    }
+}
+impl Pluggin {
+    pub fn new() -&gt; Self {
+        Self { name: "".to_string() }
+    }
+}
+/*-------------------------------------
+  Here's Pluggin architecture at work
+  - show that caller can access state
+    of pluggin after Demo changes it
+*/
+fn main() {
+    let mut p = Pluggin::new();
+    p.name("Fred");
+    p.do_plug_op("pluggin called from main");
+    
+    let mut d = Demo::&lt;Pluggin&gt;::new();
+    d.accept(&amp;mut p);
+    /*-- use Demo with pluggin --*/
+    d.do_op("demo&lt;Pluggin&gt;::do_op called");
+    
+    /*-- use original pluggin --*/
+    p.do_plug_op("original pluggin called from main");
+
+    print!("\n\n  That's all Folks!\n\n");
+}</pre>
