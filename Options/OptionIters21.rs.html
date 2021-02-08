@@ -1,0 +1,96 @@
+<pre>use std::fmt::*;
+use std::collections::HashMap;
+
+fn type_is&lt;T&gt;(_t:T) -&gt; String {
+    format!("{}", std::any::type_name::&lt;T&gt;())
+}
+/*----------------------------------------
+  - Pass by ref to avoid moving t into
+    function.
+  - that prepends &amp; char to type
+  - remove first &amp; char from type
+    string by taking slice
+*/
+fn show_type&lt;T&gt;(t:&amp;T) {
+    let s = type_is(t);
+    let s = &amp;s[1..];  // remove leading &amp; char
+    print!("\n  type is {}", s);
+}
+/*--------------------------------------
+  Demonstrate basic iteration
+*/
+fn do_iter&lt;T&gt;(iter: &amp;mut T) 
+  where T: Iterator + Debug, T::Item: Debug {
+    print!("\n  ");
+    loop {
+        let item = iter.next();
+        if item.is_none() {
+            break;
+        }
+        print!("{:?} ", item.unwrap());
+    }
+}
+/*------------------------------------
+  Demonstrate idiomatic iteration
+*/
+fn do_idiomatic_iter&lt;T&gt;(t:T) 
+  where T: IntoIterator, T::Item: Debug {
+    print!("\n  ");
+    for item in t {
+        print!("{:?} ", item);
+    }
+}
+
+fn main() {
+    let putln = || println!();
+    let putmsg = |msg:&amp;str| print!("\n  {}", msg);
+    
+    putmsg("-- iterating over array --");
+    let arr = [1, 2, 3];
+    show_type(&amp;arr);
+    do_iter(&amp;mut arr.iter());
+    do_idiomatic_iter(&amp;arr);
+    putln();
+    
+    putmsg("-- iterating over String --");
+    let s = "a string".to_string();
+    show_type(&amp;s);
+    do_iter(&amp;mut s.chars());
+    /* String doesn't implement IntoIterator */
+    do_idiomatic_iter(s.bytes());
+    putln();
+    
+    putmsg("-- iterating over String slice --");
+    let slice = &amp;s[2..];
+    show_type(&amp;slice);
+    do_iter(&amp;mut slice.char_indices());
+    /* &amp;str doesn't implement IntoIterator */
+    do_idiomatic_iter(slice.bytes());
+    putln();
+
+    putmsg("-- iterating over byte array --");
+    let bytes = &amp;s[2..].as_bytes();
+    show_type(&amp;bytes);
+    do_iter(&amp;mut bytes.iter());
+    do_idiomatic_iter(&amp;**bytes);
+    putln();
+    
+    putmsg("-- iterating over Vec --");
+    let v = vec![1, 2, 3];
+    show_type(&amp;v);
+    do_iter(&amp;mut v.iter());
+    do_idiomatic_iter(&amp;v);
+    putln();
+    
+    putmsg("-- iterating over HashMap --");
+    let mut h = HashMap::&lt;String, i32&gt;::new();
+    h.insert("zero".to_string(), 0);
+    h.insert("one".to_string(), 1);
+    h.insert("two".to_string(), 2);
+    h.insert("three".to_string(), 3);
+    show_type(&amp;h);
+    do_iter(&amp;mut h.iter());
+    do_idiomatic_iter(&amp;h);
+    
+    print!("\n\n  That's all Folks\n\n");
+}</pre>
