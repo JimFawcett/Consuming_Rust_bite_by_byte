@@ -12,7 +12,9 @@ be accompanied by a 10 to 15 minute video.
 
 Visit the link, above for access to existing materials and a preview of what's to come.
 
-All the sample code from the bytes is stored in this repository.
+Some of the sample code from the bytes is stored in this repository.  That is migrating to playground links found here:
+- <a href="https://github.com/JimFawcett/RustPlaygroundExamples">RustPlaygroundExamples</a>
+- <a href="https://jimfawcett.github.io/IndexPage.html">Glossary</a>
 
 ## Sample:
 
