@@ -1,7 +1,7 @@
 
 # Consuming_Rust_bite_by_byte<br />
 
-https://JimFawcett.github.io/RustBiteByByte.html
+https://JimFawcett.github.io/RustBiteByByte.html - RustBites documentation
 
 ## Contents:
 
@@ -17,4 +17,6 @@ All the sample code from the bytes is stored in this repository.
 ## Sample:
 
 <a href="https://jimfawcett.github.io/Resources/RustBites/RustBites_Safety.html">Memory Safety</a>
+
+See RustBites documentation link above for complete list of Bites.
 
